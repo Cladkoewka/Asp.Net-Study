@@ -7,8 +7,16 @@
 <body>
     <h2>User form</h2>
     <form method="post" action="postures">
-        <p>Name: <input name="name" /></p>
-        <p>Age: <input name="age" type="number" /></p>
+        <p>Name: <br /> <input name="name" /></p>
+        <p>Age: <br /> <input name="age" type="number" /></p>
+        <p>
+            Languages:<br />
+            <select multiple name="languages">
+                <option>C#</option>
+                <option>C++</option>
+                <option>Python</option>
+            </select>
+        </p>
         <input type="submit" value="Send" />
     </form>
 </body>
