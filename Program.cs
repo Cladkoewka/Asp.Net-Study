@@ -3,22 +3,21 @@ var app = builder.Build();
 
 app.Run(async (context) =>
 {
-    context.Response.ContentType = "text/html; charset=utf-8";
-
-    if (context.Request.Path == "/postures")
+    if (context.Request.Path == "/old")
     {
-        var form = context.Request.Form;
-        string name = form["name"];
-        string age = form["age"];
-        string[] languages = form["languages"];
-        string langList = string.Join(", ", languages);
-        await context.Response.WriteAsync($"<div><p>Name: {name}</p>" +
-            $"<p>Age: {age}</p>" +
-            $"<div>Languages:{langList}</div></div>");
+        context.Response.Redirect("/new");
+    }
+    else if (context.Request.Path == "/new")
+    {
+        await context.Response.WriteAsync("New page");
+    }
+    else if (context.Request.Path == "/metanit")
+    {
+        context.Response.Redirect("https://www.google.com/search?q=metanit.com");
     }
     else
     {
-        await context.Response.SendFileAsync("html/index.html");
+        await context.Response.WriteAsync("Main Page");
     }
 });
 
