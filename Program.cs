@@ -3,14 +3,19 @@ var app = builder.Build();
 
 app.Run(async (context) =>
 {
-    var path = context.Request.Path;
-    var fullPath = $"html/{path}";
-    var response = context.Response;
+    context.Response.ContentType = "text/html; charset=utf-8";
 
-
-    response.Headers.ContentDisposition = "attachment; filename = guuy.jpg";
-    response.SendFileAsync("Files/guy.jpg");
-
+    if (context.Request.Path == "/postures")
+    {
+        var form = context.Request.Form;
+        string name = form["name"];
+        string age = form["age"];
+        await context.Response.WriteAsync($"<div><p>Name: {name}</p><p>Age: {age}</p></div>");
+    }
+    else
+    {
+        await context.Response.SendFileAsync("html/index.html");
+    }
 });
 
 app.Run();
